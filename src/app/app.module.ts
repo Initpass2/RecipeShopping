@@ -12,6 +12,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     RecipesComponent,
     ShoppingListComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    ShoppingEditComponent
   ],
   imports: [
     BrowserModule,

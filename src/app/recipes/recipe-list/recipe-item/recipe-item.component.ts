@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe/recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeItemComponent implements OnInit {
 
-  constructor() { }
+
+  
+  @Input('xyz') recipe_item : Recipe;
+
+///xyz is the alias of recipe_item
+//only component will recognize recipe_item other file will use alias
+
+
+
+  constructor(private service : RecipeService) { }
+
+
 
   ngOnInit(): void {
   }
+
+
+  OnItemSelected()
+  {
+    this.service.recipeSelected.emit(this.recipe_item);
+  }
+  
 
 }

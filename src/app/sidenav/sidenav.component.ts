@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FeatureService } from './feature.service';
 
 
@@ -10,6 +10,7 @@ import { FeatureService } from './feature.service';
 export class SidenavComponent implements OnInit {
 
   features: any[];
+  @Output('output') feature_selected= new EventEmitter<string>()
   constructor(private service: FeatureService ) 
   {
 
@@ -17,5 +18,13 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
     this.features = this.service.getfeatures();
   }
+
+ // showItem(item)
+ showItem({title})
+  {
+    //console.log(title);
+    this.feature_selected.emit(title);
+  }
+  
 
 }

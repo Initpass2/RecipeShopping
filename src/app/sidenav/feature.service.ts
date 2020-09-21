@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FeatureService {
-
-
   feature_list =[
     {title : 'Recipes',link :''},
     {title : 'ShoppingList',link :''}
@@ -14,7 +12,6 @@ export class FeatureService {
 
   getfeatures()
   {
-        return this.feature_list;
-        
+        return this.feature_list;     
   }
 }

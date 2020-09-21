@@ -1,10 +1,8 @@
 
  <button mat-raised-button color="primary">Add Recipe</button>
 
-<div *ngFor="let food of recipes" class="adjacent-items">
-    <div>
-     <h1>{{food.name}}</h1>
-     <div>{{food.description}}</div>
-    </div>
-     <img [src]="food.imagepath" alt="{{food.name}}" class="image-height">
-</div>
+<mat-list>	
+		<app-recipe-item *ngFor="let food of recipes" [xyz]="food">
+			
+		</app-recipe-item>
+</mat-list>
