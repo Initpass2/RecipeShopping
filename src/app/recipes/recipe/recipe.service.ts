@@ -17,6 +17,8 @@ export class RecipeService {
 
 recipeSelected=new EventEmitter<Recipe>();
 
+///REceipesected is a eventemitter ...recipeitem  emits its value recipeDetail listens to its value.
+
 
   getRecipes()
   {

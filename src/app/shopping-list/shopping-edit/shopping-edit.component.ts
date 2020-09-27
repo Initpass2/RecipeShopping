@@ -10,6 +10,7 @@ export class ShoppingEditComponent implements OnInit {
 @ViewChild('ingredientnameinput',{static:false}) ingredientinputReff : ElementRef
 @ViewChild('ingredientamountinput',{static:false}) ingredientamountinputReff : ElementRef
 
+
    cart_status={};
   //@Input('ingredients') ingredient_item : Ingredient;
 
