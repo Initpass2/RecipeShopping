@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { Ingredient } from 'src/app/Shared/ingredient.model';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list/shopping-list.service';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +32,16 @@ recipeSelected=new EventEmitter<Recipe>();
 ///REceipesected is a eventemitter ...recipeitem  emits its value recipeDetail listens to its value.
 
 
-  getRecipes()
+  getRecipes() 
   {
      return this.recipes;    
   }
+
+  getRecipesobsUsedInResolver()  : Observable<Recipe[]> 
+  {
+     return  of(this.recipes);   //of is used to make the recipe array an observable. 
+  }
+
 
   getRecipeById(id:number): Recipe
   {

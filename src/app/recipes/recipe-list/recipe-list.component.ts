@@ -17,7 +17,8 @@ export class RecipeListComponent implements OnInit {
     private arRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.recipes = this.service.getRecipes();
+  //  this.recipes = this.service.getRecipes();
+  this.recipes=this.arRoute.snapshot.data.recipeList;
 
   }
 
