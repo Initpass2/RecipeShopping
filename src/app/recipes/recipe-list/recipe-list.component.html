@@ -1,8 +1,8 @@
 
- <button mat-raised-button color="primary">Add Recipe</button>
+ <button mat-raised-button color="primary" (click)="addNewRecipe()">Add Recipe</button>
 
 <mat-list>	
-		<app-recipe-item *ngFor="let food of recipes" [xyz]="food">
+		<app-recipe-item *ngFor="let food of recipes ; let i=index"  [xyz]="food" [index]="i">
 			
 		</app-recipe-item>
 </mat-list>

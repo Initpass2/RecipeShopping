@@ -4,7 +4,11 @@
 <div class="spacer">
 
 
-</div>
-    <button mat-raised-button color="primary">Manage</button>
+   </div>
+     <button mat-raised-button color="primary" (click)="loginAndLOgout()">{{isAuthenticated ? "Logout" : "Login"}}</button> 
+    <!-- <button mat-raised-button color="primary" *ngIf= "isAuthenticated$ | async as isauth" (click)="loginAndLOgout()"> -->
+     
+      <!-- {{isauth ? "Logout" : "Login"}} 
+    </button>-->
   </mat-toolbar>
  

@@ -12,6 +12,7 @@ export class RecipeItemComponent implements OnInit {
 
   
   @Input('xyz') recipe_item : Recipe;
+  @Input() index : Number;
 
 ///xyz is the alias of recipe_item
 //only component will recognize recipe_item other file will use alias
@@ -23,13 +24,15 @@ export class RecipeItemComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
   }
 
 
-  OnItemSelected()
-  {
-    this.service.recipeSelected.emit(this.recipe_item);
-  }
+  // OnItemSelected()
+  // {
+    
+  //   this.service.recipeSelected.emit(this.recipe_item);
+  // }
   
 
 }

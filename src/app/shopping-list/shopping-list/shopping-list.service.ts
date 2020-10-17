@@ -16,9 +16,21 @@ export class ShoppingListService {
   constructor() { }
 
 
+  addIngredientToshoppingList(ingredients  : Ingredient[])
+  {
+      this.ingredients.push(...ingredients);
+  }
+
+
   getShoppingList()
   {
-        return this.ingredients;    
+    return this.ingredients;    
   }
+
+  //return shopping list
+  //get ingredients
+  //update 
+  //delete
+  //insert into shopping list
 
 }

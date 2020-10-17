@@ -1,17 +1,31 @@
-<div *ngIf="selectedRecipe.name; else noSelectedRecipe">
-<img matListAvatar [src]="selectedRecipe.imagepath" alt="{{selectedRecipe.name}}" style="max-height:300px;">
-<h3 matLine> {{selectedRecipe.name}} </h3>
-<p matLine>
-    <span> {{selectedRecipe.description}} </span>			
-</p>
+<div *ngIf="selectedRecipe.name">
+    
+        <img matListAvatar [src]="selectedRecipe.imagepath" alt="{{selectedRecipe.name}}" style="max-height:300px;">
+        <h3 matLine> {{selectedRecipe.name}} </h3>
+        <p matLine>
+            <span> {{selectedRecipe.description}} </span>	
+            		
+        </p>
+        <ul>
+            <li *ngFor="let item of selectedRecipe.ingredients">
+                {{item.name}}-{{item.amount}}
+            </li>
+        </ul>
+        
+    <!---<li>Add to Shopping List</li>--->
+    <button mat-icon-button aria-label="Add  to Shopping List" (click)="onAddtoShoppingList()">
+    <mat-icon matTooltip="Add  to Shopping List" color="accent">add_shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Edit Recipe" (click)="onEditRecipe()">
+    <mat-icon matTooltip="Edit Recipe" color="accent">create</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Delete Recipe">
+    <mat-icon matTooltip="Delete Recipe" color="accent">delete</mat-icon>
+    </button>
+    
 
-<ul>
-    <li>Add  to Shopping List</li>
-    <li>Edit Recipe</li>
-    <li>Delete Recipe</li>
-</ul>
 </div>
 
-<ng-template #noSelectedRecipe>
+<!-- <ng-template #noSelectedRecipe>
 <p>Please select a Recipe</p>
-</ng-template>
+</ng-template> -->
