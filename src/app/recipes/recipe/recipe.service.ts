@@ -53,4 +53,14 @@ recipeSelected=new EventEmitter<Recipe>();
   this.shoppingService.addIngredientToshoppingList(ingredients);
   }
 
+  addRecipes(recipe: Recipe)
+  {
+  this.recipes.push(recipe);
+  }
+
+  editRecipe(id:number,recipe: Recipe)
+  {
+      this.recipes[id]=recipe;
+  }
+
 }

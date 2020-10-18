@@ -1,1 +1,51 @@
-<p>recipe-edit works!</p>
+<form [formGroup]="recipeForm" class="recipeEditAndAdd" (ngSubmit)="onFormSubmit()">
+    <mat-form-field>
+        <input matInput placeholder="name" formControlName="name" required>
+        <!-- <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.required">
+                Recipe Name is required.
+            </div>
+        </mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="description" formControlName="description" required>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <input matInput placeholder="imagepath" formControlName="imagepath" required>
+    </mat-form-field>
+
+    <div formArrayName="ingredients">
+        <!--which is line no 54 component.ts -->
+        <div *ngFor="let item of ingredients.controls ; index as i">
+            <div [formGroupName]="i">
+                <mat-form-field  class="margin-right-sm">
+                    <input matInput placeholder="Ingredient Name" formControlName="name" required>
+                </mat-form-field>
+
+                <mat-form-field class="margin-right-sm">
+                    <input matInput placeholder="Ingredient Amount" formControlName="amount" required>
+                </mat-form-field>
+
+                <button mat-mini-fab color="accent" matTooltip="Add Ingredient" class="margin-right-sm" (click)="addIngredients()">
+                    <mat-icon class="add">
+                        add
+                    </mat-icon>
+                </button>
+
+
+                <button mat-mini-fab color="accent"  
+                matTooltip="Delete Ingredient"
+                (click)="deleteIngredients(i)" *ngIf ="ingredients.controls.length>1">
+                    <mat-icon class="add">
+                        delete_outline
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button mat-stroked-button color="accent">SUBMIT</button>
+</form>
