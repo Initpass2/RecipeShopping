@@ -19,7 +19,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit(): void {
   //  this.recipes = this.service.getRecipes();
   this.recipes=this.arRoute.snapshot.data.recipeList;
-
+  //console.log('from Component' + JSON.stringify(this.recipes));
   }
 
   addNewRecipe() {

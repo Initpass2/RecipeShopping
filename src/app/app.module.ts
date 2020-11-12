@@ -16,7 +16,8 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { StartrecipeComponent } from './recipes/startrecipe/startrecipe.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 
@@ -40,8 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

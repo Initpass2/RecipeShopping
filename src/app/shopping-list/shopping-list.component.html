@@ -2,9 +2,15 @@
 <app-shopping-edit></app-shopping-edit>
 <mat-list>
     {{pageTitle}}	
-    <div *ngFor="let item of ingredients">
-      {{item.name}}      
-      {{item.amount}}
-    </div>
+    <mat-list-item *ngFor="let item of ingredients; let i=index">
+     <span class="margin-right-sm">{{item.name}} </span>      
+     <b class="margin-right-sm">{{item.amount}}</b>
+     <button mat-mini-fab color="accent" matTooltip="Edit Ingredient" class="margin-right-sm" 
+     (click)="onEditIngredient(i)">
+      <mat-icon class="add">
+        create
+      </mat-icon>
+  </button>
+    </mat-list-item>
     
 </mat-list>

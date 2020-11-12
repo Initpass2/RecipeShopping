@@ -3,13 +3,17 @@ import { Recipe } from '../recipe.model';
 import { Ingredient } from 'src/app/Shared/ingredient.model';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list/shopping-list.service';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-constructor(private shoppingService: ShoppingListService) { }
+constructor(private shoppingService: ShoppingListService, private http : HttpClient) { }
 
   recipes : Recipe[]=[
     new Recipe("burger",
@@ -39,9 +43,32 @@ recipeSelected=new EventEmitter<Recipe>();
 
   getRecipesobsUsedInResolver()  : Observable<Recipe[]> 
   {
-     return  of(this.recipes);   //of is used to make the recipe array an observable. 
+   //  return  of(this.recipes);   //of is used to make the recipe array an observable. 
+   return this.http.get<Recipe[]>(environment.apiEndPoints.Recipeurl)
+   .pipe(
+     map((recipes: any)=>{
+      let recipelist  : Recipe[]=[];
+      for (const key in recipes) {
+        if (Object.prototype.hasOwnProperty.call(recipes, key)) {
+          const element = recipes[key];   
+          
+          recipelist.push({...element,_id: key});
+        }
+      }
+     // console.log('from Service' +  JSON.stringify(recipes)); 
+      return recipelist;
+     }),
+   );
+   //return  of(this.recipes); 
   }
 
+
+ //  return recipes.map(recipe=>
+      //   {
+      //    return {
+      //      ...recipe,ingredients : recipe.ingredients? recipe.ingredients: []
+      //    }
+      //  })
 
   getRecipeById(id:number): Recipe
   {
@@ -55,7 +82,12 @@ recipeSelected=new EventEmitter<Recipe>();
 
   addRecipes(recipe: Recipe)
   {
-  this.recipes.push(recipe);
+  //this.recipes.push(recipe);
+    this.http.post(environment.apiEndPoints.Recipeurl,recipe).subscribe((
+      response:any)=>{
+        console.log('Adding Recipe: ' + response);
+      }
+    );
   }
 
   editRecipe(id:number,recipe: Recipe)

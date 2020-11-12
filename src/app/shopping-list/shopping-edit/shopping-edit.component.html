@@ -8,6 +8,34 @@
 
 
 
-<input type="text" #ingredientnameinput>
+<!-- <input type="text" #ingredientnameinput>
 <input type="number" #ingredientamountinput>
-<button (click)="AddIngredient()">Add ingredient</button>
+<button (click)="AddIngredient()">Add ingredient</button> -->
+
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <mat-form-field class="margin-right-sm">
+        <input matInput placeholder="name" type="text" id="name" name="name"
+        required ngModel>
+    </mat-form-field>
+
+
+    <mat-form-field class="margin-right-sm">
+        <input matInput placeholder="amount"  type="number" id="amount" name="amount"
+        required ngModel>
+    </mat-form-field>
+
+
+    <button mat-stroked-button color="accent" type="submit" [disabled]="!f.valid" class="margin-right-sm">{{editedMode ? "Edit Ingredient" : "Add Ingredient"}}</button>
+    <button mat-stroked-button color="accent" type="button" class="margin-right-sm" (click)="discardIngredient()" *ngIf ="editedMode">Delete Ingredient</button>
+    <!-- <button mat-mini-fab color="accent"  
+                matTooltip="Delete Ingredient"
+                (click)="discardIngredient()" *ngIf ="editedMode">
+                    <mat-icon class="add">
+                        delete_outline
+                    </mat-icon>
+    </button> -->
+    <button mat-stroked-button color="accent" type="button"  (click)="onClear()">Clear</button>
+    
+</form>
+

@@ -87,6 +87,7 @@ export class RecipeEditComponent implements OnInit {
     }
     else {
       this.service.addRecipes(this.recipeForm.value);
+      this.resetForm();
     }
 
     //console.log(this.recipeForm.value);
@@ -113,10 +114,6 @@ export class RecipeEditComponent implements OnInit {
     }
 
   }
-
-
-
-
   getDataWithId() {
     this.arroute.params.subscribe((data) => {
       console.log(data);

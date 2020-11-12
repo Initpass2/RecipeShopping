@@ -24,7 +24,7 @@ const routes: Routes = [
     //canActivate: [AuthGuardService], // this will not check the child if it once find in parent 
     resolve:
     {
-      recipeList: RecipeListResolverService
+      recipeList: RecipeListResolverService  
     },
     children : [
       {

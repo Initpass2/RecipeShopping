@@ -19,9 +19,11 @@ export class AuthServiceService {
     console.log(this.isAuthenticated);
   }
 
+  //observable can  only listened
+  //behavioussubject and subject can listen and emit but only behavioussubject can be initialized with a value
+
   getAuthentication() : Observable<boolean>
   //BehaviorSubject<boolean>
-  
   {
  // return this.isAuthenticated;
      return this.isAuthenticated as Observable<boolean>;
