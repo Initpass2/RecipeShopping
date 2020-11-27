@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiEndPoints : {
-    Recipeurl : 'https://recipeshopping-7d560.firebaseio.com/Recipes.json'
+    Recipeurl : 'https://recipeshopping-7d560.firebaseio.com/Recipes',
+    ShoppingUrl: 'https://recipeshopping-7d560.firebaseio.com/Shopping'
   }
 };
 

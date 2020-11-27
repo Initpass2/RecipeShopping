@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe/recipe.service';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.scss']
 })
-export class RecipeEditComponent implements OnInit {
+export class RecipeEditComponent implements OnInit ,OnDestroy{
 
   selectedRecipe: any;
   recipeForm: FormGroup;
+  ngUnsubscribe = new Subject();
 
-  constructor(private fb: FormBuilder, private service: RecipeService, private arroute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private service: RecipeService, private arroute: ActivatedRoute
+    ,private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -77,21 +81,30 @@ export class RecipeEditComponent implements OnInit {
   deleteIngredients(i: number) {
     this.ingredients.removeAt(i);
   }
-  onFormSubmit() {
+  onFormSubmit()
+   {
     if (this.recipeForm.invalid) {
       return;
     }
 
     if (this.selectedRecipe) {
-      this.service.editRecipe(this.selectedRecipe, this.recipeForm.value);
+      this.service.editRecipe(this.selectedRecipe, this.recipeForm.value).pipe(take(1))
+      .subscribe((
+        response:any)=>{
+          this.service.recipeReloadRequired.next(true)
+        //  this.router.navigate(['/recipes'])
+        }
+      );
+     
+     // this.resetForm();
     }
-    else {
+    else
+    {
       this.service.addRecipes(this.recipeForm.value);
       this.resetForm();
     }
 
-    //console.log(this.recipeForm.value);
-    // console.log(this.ingredients);
+   
   }
 
   resetForm() {
@@ -104,7 +117,6 @@ export class RecipeEditComponent implements OnInit {
       this.description.setValue(recipedata.description);
       this.imagepath.setValue(recipedata.imagepath);
 
-
       if (recipedata.ingredients.length) {
         this.deleteIngredients(0);
         for (const iterator of recipedata.ingredients) {
@@ -114,15 +126,26 @@ export class RecipeEditComponent implements OnInit {
     }
 
   }
-  getDataWithId() {
+  getDataWithId() 
+  {
     this.arroute.params.subscribe((data) => {
       console.log(data);
       this.selectedRecipe = data.id;
       if (this.selectedRecipe) {
-        const selectedRecipeDetails = this.service.getRecipeById(this.selectedRecipe);
-        this.populateData(selectedRecipeDetails);
+          this.service.getRecipeById(this.selectedRecipe)
+          .pipe(takeUntil(this.ngUnsubscribe))    ///unsubcribe
+          .subscribe
+        ((data)=>{
+          this.populateData(data);
+        });       
       }
     }
     )
   }
+
+  ngOnDestroy():void{
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
 }

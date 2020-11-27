@@ -1,5 +1,5 @@
 <!-- <mat-list-item (click)="OnItemSelected()"> -->
-    <mat-list-item [routerLink]="[index]" [queryParams]="{edit:true}"  routerLinkActive="active">
+    <mat-list-item [routerLink]="[recipe_item._id]" [queryParams]="{edit:true}"  routerLinkActive="active">
     <img matListAvatar [src]="recipe_item.imagepath" alt="{{recipe_item.name}}" >
     <h3 matLine> {{recipe_item.name}} </h3>
     <p matLine>

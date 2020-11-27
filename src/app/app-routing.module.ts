@@ -6,8 +6,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { StartrecipeComponent } from './recipes/startrecipe/startrecipe.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthGuardService } from './authGuard/auth-guard.service';
+
 import { RecipeListResolverService } from './resolver/recipe-list-resolver.service';
+import { AuthGuardService } from './Shared/Auth/authGuard/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -22,10 +23,10 @@ const routes: Routes = [
     component : RecipesComponent,
     canActivateChild : [AuthGuardService], /// this will check all the child repeated times.
     //canActivate: [AuthGuardService], // this will not check the child if it once find in parent 
-    resolve:
-    {
-      recipeList: RecipeListResolverService  
-    },
+    // resolve:
+    // {
+    //   recipeList: RecipeListResolverService  
+    // },
     children : [
       {
         path: '',

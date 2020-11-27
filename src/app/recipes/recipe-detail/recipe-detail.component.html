@@ -1,4 +1,4 @@
-<div *ngIf="selectedRecipe.name">
+<div *ngIf="selectedRecipe$ | async as selectedRecipe" >
     
         <img matListAvatar [src]="selectedRecipe.imagepath" alt="{{selectedRecipe.name}}" style="max-height:300px;">
         <h3 matLine> {{selectedRecipe.name}} </h3>
@@ -13,7 +13,7 @@
         </ul>
         
     <!---<li>Add to Shopping List</li>--->
-    <button mat-icon-button aria-label="Add  to Shopping List" (click)="onAddtoShoppingList()">
+    <button mat-icon-button aria-label="Add  to Shopping List" (click)="onAddtoShoppingList(selectedRecipe)">
     <mat-icon matTooltip="Add  to Shopping List" color="accent">add_shopping_cart</mat-icon>
     </button>
     <button mat-icon-button aria-label="Edit Recipe" (click)="onEditRecipe()">

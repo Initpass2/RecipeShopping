@@ -10,6 +10,8 @@ export class AuthServiceService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   
   //private isAuthenticated = new Subject<boolean>();
+  username ="Shreyasi";
+  
 
   constructor() { }
 

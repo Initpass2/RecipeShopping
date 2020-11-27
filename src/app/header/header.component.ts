@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthServiceService } from '../authService/auth-service.service';
+
 import { Subscription, Observable } from 'rxjs';
+import { AuthServiceService } from '../Shared/Auth/authService/auth-service.service';
 
 
 @Component({
@@ -15,13 +16,14 @@ private subscription :Subscription;
 //2nd Process
   
 //isAuthenticated$ : Observable<boolean>;
-
+storeUserName:string;
 
   isAuthenticated = false;
   constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
    this.getAuthentication();
+   this.storeUserName=this.authService.username;
     //this.isAuthenticated$ = this.authService.getAuthentication();
   }
 

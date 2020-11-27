@@ -12,7 +12,7 @@ export class RecipeItemComponent implements OnInit {
 
   
   @Input('xyz') recipe_item : Recipe;
-  @Input() index : Number;
+  //@Input() index : any;
 
 ///xyz is the alias of recipe_item
 //only component will recognize recipe_item other file will use alias

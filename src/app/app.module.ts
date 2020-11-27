@@ -17,7 +17,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { StartrecipeComponent } from './recipes/startrecipe/startrecipe.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './Shared/Auth/Interceptor/auth-interceptor.service';
 
 
 
@@ -45,7 +46,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

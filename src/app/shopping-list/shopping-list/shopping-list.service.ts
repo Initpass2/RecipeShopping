@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from 'src/app/Shared/ingredient.model';
 import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AuthServiceService } from 'src/app/Shared/Auth/authService/auth-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +17,20 @@ export class ShoppingListService {
     new Ingredient("cabbage",20)  
   ]
 
-  constructor() { }
+  constructor(private http : HttpClient,private auth : AuthServiceService) { }
 
   private editIngredient =new Subject <number> ()
 
-  addIngredientToshoppingList(ingredients  : Ingredient[])
+  addIngredientToshoppingList(ingredients  : Ingredient[]) 
+  //: Observable<Ingredient[]>
   {
       this.ingredients.push(...ingredients);
+    // return this.http.post<Ingredient[]>(environment.apiEndPoints.ShoppingUrl + '.json',{...ingredients})
+      //{
+       // user : this.auth.username,
+        
+   // }
+      
   }
 
   getIngredient(i: number) 

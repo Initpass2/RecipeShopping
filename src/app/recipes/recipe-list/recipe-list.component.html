@@ -1,8 +1,10 @@
 
  <button mat-raised-button color="primary" (click)="addNewRecipe()">Add Recipe</button>
 
-<mat-list>	
-		<app-recipe-item *ngFor="let food of recipes ; let i=index"  [xyz]="food" [index]="i">
+<mat-list *ngIf = "recipes$ | async as recipes" >	
+	<!--///async--   where in case of any httpget Call we will use async.we dont need to use subscribe in case of async in case >-->
+		<app-recipe-item *ngFor="let food of recipes ; let i=index"  [xyz]="food">
+		<!-- [index]="food._id"> -->
 			
 		</app-recipe-item>
 </mat-list>
