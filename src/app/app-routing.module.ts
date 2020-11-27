@@ -50,11 +50,6 @@ const routes: Routes = [
     ]
   },
   {
-    path : 'shopping-list',
-    component : ShoppingListComponent,
-    canActivate: [AuthGuardService]//in case of interdenpendent we can not use comma seperator router Guard.they work asynchronously.
-  },
-  {
     path: '404',
     component: NotFoundComponent,
     data:{message : 'Page Not Found!!'}
@@ -73,7 +68,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes)],//for root will be declared only app routing module 
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
